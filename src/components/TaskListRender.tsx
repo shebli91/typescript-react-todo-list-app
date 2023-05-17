@@ -1,7 +1,13 @@
 import React from "react";
+import { TaskObject } from "../App";
 
-export function TaskListRender({ tasks, onTaskDone }) {
-  const handleTaskDone = (taskId) => {
+interface Props {
+  tasks: TaskObject[];
+  onTaskDone: (taskId: number, updatedTask: TaskObject) => void;
+}
+
+export function TaskListRender({ tasks, onTaskDone }: Props) {
+  const handleTaskDone = (taskId: number) => {
     // Find the index of the task with the given taskId
     const taskIndex = tasks.findIndex((task) => task.id === taskId);
     if (taskIndex !== -1) {
