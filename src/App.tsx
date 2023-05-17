@@ -4,13 +4,8 @@ import { TaskCounter } from "./components/TaskCounter";
 import { TodoForm } from "./components/TodoForm";
 import { TaskVisibilityToggle } from "./components/TaskVisibilityToggle";
 import { TaskSearch } from "./components/TaskSearch";
+import { TaskObject } from "./components/model";
 
-export interface TaskObject {
-  id: number;
-  task: string;
-  assignee: string;
-  isDone: boolean;
-}
 function App() {
   // Array of tasks
   const [tasks, setTasks] = useState<TaskObject[]>([]);

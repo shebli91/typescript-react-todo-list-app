@@ -1,5 +1,5 @@
 import React from "react";
-import { TaskObject } from "../App";
+import { TaskObject } from "./model";
 
 interface Props {
   tasks: TaskObject[];

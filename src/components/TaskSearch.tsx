@@ -1,10 +1,16 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { TaskListRender } from "./TaskListRender";
+import { TaskObject } from "./model";
 
-export function TaskSearch({ tasks, onTaskDone }) {
+interface Props {
+  tasks: TaskObject[];
+  onTaskDone: (taskId: number, updatedTask: TaskObject) => void;
+}
+
+export function TaskSearch({ tasks, onTaskDone }: Props) {
   const [searchText, setSearchText] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
 
