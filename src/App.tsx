@@ -1,24 +1,30 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { TaskCounter } from "./components/TaskCounter";
 import { TodoForm } from "./components/TodoForm";
 import { TaskVisibilityToggle } from "./components/TaskVisibilityToggle";
 import { TaskSearch } from "./components/TaskSearch";
 
+export interface TaskObject {
+  id: number;
+  task: string;
+  assignee: string;
+  isDone: boolean;
+}
 function App() {
   // Array of tasks
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<TaskObject[]>([]);
 
   const [showTasks, setShowTasks] = useState(true);
 
   // Define the onAddTask callback function
-  const handleAddTask = (taskObj) => {
+  const handleAddTask = (taskObj: TaskObject) => {
     // Push the new task object to the tasks array using the setTasks function
     setTasks([...tasks, taskObj]);
   };
 
   // Define the onTaskDone callback function
-  const handleTaskDone = (taskId, updatedTask) => {
+  const handleTaskDone = (taskId: number, updatedTask: TaskObject) => {
     // Find the index of the task with the given taskId
     const taskIndex = tasks.findIndex((task) => task.id === taskId);
     if (taskIndex !== -1) {
