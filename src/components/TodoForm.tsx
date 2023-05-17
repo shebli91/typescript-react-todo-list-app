@@ -1,22 +1,27 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
+import { TaskObject } from "./model";
 
-export function TodoForm({ onAddTask }) {
+interface Props {
+  onAddTask: (taskObj: TaskObject) => void;
+}
+
+export function TodoForm({ onAddTask }: Props) {
   const [task, setTask] = useState("");
   const [assignee, setAssignee] = useState("");
 
-  const onTaskChange = (e) => {
+  const onTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask(e.target.value);
   };
 
-  const onAssigneeChange = (e) => {
+  const onAssigneeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAssignee(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Generate a unique id for the new task
-    const taskId = new Date().getTime().toString();
+    const taskId = new Date().getTime();
 
     // Check if the task and the assignee are not empty
     if (task && assignee) {
