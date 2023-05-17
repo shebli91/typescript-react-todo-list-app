@@ -1,6 +1,11 @@
 import React from "react";
 
-export function TaskVisibilityToggle({ showTasks, setShowTasks }) {
+interface Props {
+  showTasks: boolean;
+  setShowTasks: (value: boolean) => void;
+}
+
+export function TaskVisibilityToggle({ showTasks, setShowTasks }: Props) {
   const handleClick = () => {
     setShowTasks(!showTasks);
   };
