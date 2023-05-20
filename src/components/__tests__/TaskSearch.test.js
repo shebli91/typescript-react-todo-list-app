@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import TaskSearch from "../TaskSearch";
+
 describe("TaskSearch", () => {
   const tasks = [
     { id: 1, task: "Task 1", assignee: "Assignee 1", isDone: false },
@@ -11,16 +12,18 @@ describe("TaskSearch", () => {
 
   const onTaskDoneMock = jest.fn();
 
-  beforeEach(() => {
-    render(<TaskSearch tasks={tasks} onTaskDone={onTaskDoneMock} />);
+  afterEach(() => {
+    cleanup();
   });
 
   it("renders the search input correctly", () => {
+    render(<TaskSearch tasks={tasks} onTaskDone={onTaskDoneMock} />);
     const searchInput = screen.getByPlaceholderText("Search tasks...");
     expect(searchInput).toBeInTheDocument();
   });
 
   it("filters tasks based on search input", () => {
+    render(<TaskSearch tasks={tasks} onTaskDone={onTaskDoneMock} />);
     const searchInput = screen.getByPlaceholderText("Search tasks...");
 
     fireEvent.change(searchInput, { target: { value: "Task 1" } });
@@ -36,6 +39,7 @@ describe("TaskSearch", () => {
   });
 
   it("calls the onTaskDone function when task is marked as done", () => {
+    render(<TaskSearch tasks={tasks} onTaskDone={onTaskDoneMock} />);
     const searchInput = screen.getByPlaceholderText("Search tasks...");
 
     fireEvent.change(searchInput, { target: { value: "Task 1" } });
